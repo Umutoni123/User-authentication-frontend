@@ -1,0 +1,124 @@
+<div class="relative">
+  <div
+    class="absolute inset-0 h-screen flex flex-col"
+    style="
+      background-image: url('assets/bg1.avif');
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    
+      
+
+      <!-- Right Side: Registration Form -->
+
+        <p class="text-3xl font-semibold mb-4 text-center">Register</p>
+
+        <form
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+          class="p-6 bg-gray-100 rounded-lg shadow-lg w-full max-w-md mx-auto"
+        >
+          <!-- Name Input -->
+          <div class="mb-3">
+            <input
+              type="text"
+              placeholder="Username"
+              class="border p-2 w-full rounded"
+              formControlName="name"
+            />
+            <div
+              *ngIf="
+                registerForm.get('name')?.invalid &&
+                registerForm.get('name')?.touched
+              "
+              class="text-red-500 text-sm mt-1"
+            >
+              Name must be at least 3 characters.
+            </div>
+          </div>
+
+          <!-- Email Input -->
+          <div class="mb-3">
+            <input
+              type="email"
+              placeholder="Email"
+              class="border p-2 w-full rounded"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                registerForm.get('email')?.invalid &&
+                registerForm.get('email')?.touched
+              "
+              class="text-red-500 text-sm mt-1"
+            >
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="mb-3">
+            <input
+              type="password"
+              placeholder="Password"
+              class="border p-2 w-full rounded"
+              formControlName="password"
+            />
+            <div
+              *ngIf="
+                registerForm.get('password')?.invalid &&
+                registerForm.get('password')?.touched
+              "
+              class="text-red-500 text-sm mt-1"
+            >
+              Password must be at least 6 characters.
+            </div>
+          </div>
+
+          <!-- Confirm Password Input -->
+          <div class="mb-3">
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              class="border p-2 w-full rounded"
+              formControlName="confirmPassword"
+            />
+            <div
+              *ngIf="
+                registerForm.get('confirmPassword')?.touched &&
+                !passwordsMatch()
+              "
+              class="text-red-500 text-sm mt-1"
+            >
+              Passwords do not match.
+            </div>
+          </div>
+
+          <!-- Register Button -->
+          <div class="mt-4">
+            <button
+              type="submit"
+              [disabled]="registerForm.invalid"
+              class="border rounded w-full py-2 bg-blue-500 text-white hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              Register
+            </button>
+            <div
+              *ngIf="registerForm.invalid"
+              class="text-gray-500 text-sm mt-2 text-center"
+            >
+              Please fill in all fields correctly.
+            </div>
+          </div>
+          <div class="flex justify-between items-center p-8">
+           <div> <p  class="underline text-blue-500">Already have an account</p></div>
+            <div class="">
+                <a href="/login">Login</a>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+

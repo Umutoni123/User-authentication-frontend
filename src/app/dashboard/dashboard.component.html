@@ -1,0 +1,27 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-3xl font-bold">Expense Tracker</h2>
+  
+    <!-- Total Spending -->
+    <div class="bg-blue-100 p-4 my-4 rounded-lg">
+      <!-- <p class="text-xl font-semibold">Total Spent: ${{ totalSpent }}</p> -->
+    </div>
+  
+    <!-- Add Expense Form -->
+    <form (ngSubmit)="addExpense()" [formGroup]="dashboardForm" class="space-y-4">
+      <input type="number" formControlName="amount" placeholder="Amount" class="border p-2 w-full rounded">
+      <input type="text" formControlName="reason" placeholder="Reason" class="border p-2 w-full rounded">
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">Add Expense</button>
+    </form>
+  
+    <!-- Expense List -->
+    <div class="mt-6">
+      <h3 class="text-xl font-semibold">My Expenses</h3>
+      <ul>
+        <li *ngFor="let expense of expenses" class="flex justify-between bg-gray-200 p-3 my-2 rounded">
+          <span>${{ expense.amount }} - {{ expense.reason }}</span>
+          
+        </li>
+      </ul>
+    </div>
+  </div>
+  

@@ -1,0 +1,26 @@
+
+<div class="relative ">
+  
+    <div class="absolute inset-0 h-screen justify-center w-full">
+
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <div class="border">
+    <label>Email</label>
+    <input type="email" formControlName="email"  class="border"/>
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+</form>
+   
+      
+      
+    </div>
+    
+  </div>
+  
