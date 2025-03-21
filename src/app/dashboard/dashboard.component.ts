@@ -61,17 +61,21 @@ export class DashboardComponent implements OnInit {
     return this.expenses.reduce((sum, expense) => sum+ expense.amount, 0)
   }
   removeExpense(expenseId: String){
-    this.authService.deleteExpense(expenseId).subscribe({
-      next: () =>{
-        alert("expense deleted");
-        this.fetchExpenses()
-
-      },
-      error: (error) =>{
-        console.error('error deleting expense', error);
-        
-      }
-    })
+    const confirmDelete = confirm("do you want to delete an expense");
+    if (confirmDelete){
+      this.authService.deleteExpense(expenseId).subscribe({
+        next: () =>{
+          alert("expense deleted");
+          this.fetchExpenses()
+  
+        },
+        error: (error) =>{
+          console.error('error deleting expense', error);
+          
+        }
+      })
+    }
+    
   }
 
 }
