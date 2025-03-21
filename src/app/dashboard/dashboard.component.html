@@ -3,7 +3,7 @@
   
     <!-- Total Spending -->
     <div class="bg-blue-100 p-4 my-4 rounded-lg">
-      <!-- <p class="text-xl font-semibold">Total Spent: ${{ totalSpent }}</p> -->
+      <p class="text-xl font-semibold">Total Spent: RWF {{ totalSpent }}</p>
     </div>
   
     <!-- Add Expense Form -->
@@ -19,7 +19,8 @@
       <ul>
         <p *ngIf="expenses.length === 0">No expenses found.</p>
         <li *ngFor="let expense of expenses" class="flex justify-between bg-gray-200 p-3 my-2 rounded">
-          <span>${{ expense.amount }} - {{ expense.reason }}</span>
+          <span>RWF {{ expense.amount }} - {{ expense.reason }}</span>
+          <button (click)="removeExpense(expense._id)">DELETE</button>
           
         </li>
       </ul>

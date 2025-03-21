@@ -58,4 +58,12 @@ export class AuthService {
   });
     
   }
+
+  deleteExpense(expenseId: String): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.delete(`${this.apiUrl}/deleteexpense/${expenseId}`, {
+      headers: {Authorization: `Bearer ${token}`},
+    } )
+
+  }
 }

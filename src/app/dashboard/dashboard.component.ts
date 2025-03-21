@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements OnInit {
 
   expenses: any[] = [];
-
+  
   constructor(private authService: AuthService, private router: Router){}
 
   dashboardForm = new FormGroup({
@@ -53,6 +53,22 @@ export class DashboardComponent implements OnInit {
       },
       error: (error) =>{
         console.error('error fetching expenses', error);
+        
+      }
+    })
+  }
+  get totalSpent(): number{
+    return this.expenses.reduce((sum, expense) => sum+ expense.amount, 0)
+  }
+  removeExpense(expenseId: String){
+    this.authService.deleteExpense(expenseId).subscribe({
+      next: () =>{
+        alert("expense deleted");
+        this.fetchExpenses()
+
+      },
+      error: (error) =>{
+        console.error('error deleting expense', error);
         
       }
     })
